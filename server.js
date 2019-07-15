@@ -9,5 +9,33 @@ var exphbs = require('express-handlebars');
 // Mongoose is a MongoDB object modeling tool.  https://mongoosejs.com/
 var mongoose = require('mongoose');
 
+// Require all models.
+var db = require("./models");
+var PORT = (3000);
+
 // Initialize Express.
-var app = express;
+var app = express();
+
+// Configure middleware
+// Serve static files.
+app.use(express.static('public'));
+// Parse incoming request with urlencoded payload.
+app.use(express.urlencoded({extended: true}));
+// Parse incoming request with JSON payloads.
+app.use(express.json());
+
+// Connect to MongoDB.
+mongoose.connect('mongodb://localhost/Scraper', {useNewUrlParser: true});
+
+// Routes
+// GET route for scraping New York Times website.
+app.get('/scrape', function(req, res) {
+    // Grab html body with axios.
+    axios.get('https://www.nytimes.com/').then(function(response) {
+        
+    });
+});
+// Start the server
+app.listen(PORT, function() {
+    console.log("App running on port " + PORT);
+});
