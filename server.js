@@ -32,7 +32,21 @@ mongoose.connect('mongodb://localhost/Scraper', {useNewUrlParser: true});
 app.get('/scrape', function(req, res) {
     // Grab html body with axios.
     axios.get('https://www.nytimes.com/').then(function(response) {
+        // Load html body into cheerio and save it as '$'.
+        var $ = cheerio.load(response.data);
         
+        // Grab every article h2 tag
+        $('article h2').each(function(i, element) {
+            // Save an empty object to hold data.
+            var result = {};
+
+            // Save text and href of every link as properties of result object.
+            result.title = $(this).children('a').text();
+            result.link = $(this).children('a').attr('href');
+
+            // Create new Article with result object.
+            
+        });
     });
 });
 // Start the server
