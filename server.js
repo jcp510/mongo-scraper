@@ -45,9 +45,57 @@ app.get('/scrape', function(req, res) {
             result.link = $(this).children('a').attr('href');
 
             // Create new Article with result object.
-            
+            db.Article.create(result).then(function(dbArticle) {
+                console.log(dbArticle);
+            }).catch(function(err) {
+                console.log(err);
+            });
         });
+
+        // Send confirmation to client.
+        res.send('Scrape complete');
     });
+});
+
+// GET route to get all Articles from db.
+app.get('/articles', function(req, res) {
+    // Grab every document in Articles collection.
+    db.Article.find({}).then(function(dbArticle) {
+        // If Articles successfully found, send back to client.
+        res.json(dbArticle);
+    }).catch(function(err) {
+        // If error, send it to client.
+        res.json(err);
+    });
+});
+
+// GET route for getting Article by id.
+app.get('/articles/:id', function(req, res) {
+    // Query to find Article with matching id and populate it with associated notes.
+    db.Article.findOne({_id: req.params.id}).populate('note').then(function(dbArticle) {
+        // If Article with matching id successfully found, send back to client.
+        res.json(dbArticle);
+    }).catch(function(err) {
+        // If error, send it to client.
+        res.json(err);
+    });
+});
+
+// Route for saving/updating Article's associated Note.
+app.post('/articles/:id', function(req, res) {
+    // Create new note, pass it req.body.
+    db.Note.create(req.body).then(function(dbNote) {
+        // If Note successfully created, find Article with _id matching req.params.id.
+        // Associate new Note with Article.
+        // {new: true} tells query to return updated Article (returns original by default).
+        return db.Article.findOneAndUpdate({_id: req.params.id}, {note: dbNote._id}, {new: true}).then(function(dbArticle) {
+            // If Article successfully updated, send back to client.
+            res.json(dbArticle);
+        }).catch(function(err) {
+            // If error, send it to client.
+            res.json(err);
+        });
+    })
 });
 // Start the server
 app.listen(PORT, function() {
