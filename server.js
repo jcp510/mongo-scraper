@@ -16,6 +16,10 @@ var PORT = (3000);
 // Initialize Express.
 var app = express();
 
+// Register Handlebars view engine.
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
+
 // Configure middleware
 // Serve static files.
 app.use(express.static('public'));
