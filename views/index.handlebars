@@ -1,6 +1,12 @@
 <div class="container">
   <h1>Mongo Site Scraper</h1>
 
-  <div id='articles'></div>
+  <div id='articles'>
+      {{#if articles}}
+        {{#each articles}}
+            {{> articles/article-block}}
+        {{/each}}
+      {{/if}}
+  </div>
   <div id='notes'></div>
 </div>
