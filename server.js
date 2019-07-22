@@ -39,14 +39,14 @@ app.get('/scrape', function(req, res) {
         // Load html body into cheerio and save it as '$'.
         var $ = cheerio.load(response.data);
         
-        // Grab every article h2 tag
-        $('article h2').each(function(i, element) {
+        // Grab every article tag.
+        $('article').each(function(i, element) {
             // Save an empty object to hold data.
             var result = {};
 
             // Save text and href of every link as properties of result object.
-            result.title = $(this).children('a').text();
-            result.link = $(this).children('a').attr('href');
+            result.title = $(this).find('h2').children('span').first().text();
+            result.link = $(this).find('a').attr('href');
 
             // Create new Article with result object.
             db.Article.create(result).then(function(dbArticle) {
