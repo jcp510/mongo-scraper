@@ -1,6 +1,12 @@
- // Grab articles as json.
-$.getJSON('/articles', function(data) {
-    for (var i = 0; i < data.length; i++) {
-        
-    }
-});
+ // Save article.
+ 
+ // Add toggling to save-for-later button.
+ $('button').click(function() {
+     $('button').toggle();
+ });
+
+ // Add navbar with nav link for saved-for-later articles.
+ // Add functionality to delete article from saved-for-later.
+
+ // Add comment on article.
+ // Delete comments on articles.

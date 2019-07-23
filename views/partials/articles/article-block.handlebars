@@ -1,10 +1,11 @@
-<div class="card" style="width: 18rem;">
+<div class="card" data-id={{result._id}} style="width: 18rem;">
   <div class="card-body">
     <a href={{result.link}}>
         <h5 class="card-title">{{result.title}}</h5>
         <p class="card-text">{{result.summary}}</p>
     </a>
-    <a href="#" class="card-link">Save article</a>
-    <a href="#" class="card-link">Another link</a>
+    <button type="button" class="btn btn-primary" id="save">Save</button>
+    <button type="button" class="btn btn-success" id="saved" style="display: none">Saved</button>
+    <a href="#" class="card-link">Comments</a>
   </div>
 </div>
