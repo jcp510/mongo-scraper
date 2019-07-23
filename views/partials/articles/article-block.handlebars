@@ -1,8 +1,9 @@
 <div class="card" style="width: 18rem;">
   <div class="card-body">
-    <!-- Not exactly sure how to point at result.title -->
-    <h5 class="card-title">{{result.title}}</h5>
-    <p class="card-text">{{}}</p>
+    <a href={{result.link}}>
+        <h5 class="card-title">{{result.title}}</h5>
+        <p class="card-text">{{result.summary}}</p>
+    </a>
     <a href="#" class="card-link">Save article</a>
     <a href="#" class="card-link">Another link</a>
   </div>
