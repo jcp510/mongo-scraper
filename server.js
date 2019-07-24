@@ -33,7 +33,7 @@ mongoose.connect('mongodb://localhost/Scraper', {useNewUrlParser: true});
 
 // Routes
 // GET route for scraping New York Times website.
-app.get('/scrape', function(req, res) {
+app.get('/', function(req, res) {
     // Grab html body with axios.
     axios.get('https://www.nytimes.com/').then(function(response) {
         // Load html body into cheerio and save it as '$'.
