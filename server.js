@@ -45,7 +45,7 @@ app.get('/', function(req, res) {
             var result = {};
 
             // Save  href/link, headline, and summary of every article as properties of result object.
-            result.link = $(this).find('a').attr('href');
+            result.link = 'https://www.nytimes.com/' + $(this).find('a').attr('href');
             result.title = $(this).find('h2').children('span').first().text();
             result.summary = $(this).find('div.css-1ez5fsm esl82me1').next().text();
 
