@@ -7,10 +7,15 @@
 // Add comment on article.
 // Delete comments on articles.
 
-// Add toggling to save-for-later button.
-$('button').click(function() {
-    $('button').toggle();
+// Wait for DOM to fully load.
+// Shorthand for $(document).ready();
+$(function() {
+    // Add toggling to save-for-later button.
+    $('button').click(function() {
+        $('button').toggle();
+    });
 });
+
  
 
  

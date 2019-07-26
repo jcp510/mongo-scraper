@@ -1,11 +1,11 @@
 // Dependencies.
 var express = require('express');
+// Handlebars view engine for Express.  https://www.npmjs.com/package/express-handlebars
+var exphbs = require('express-handlebars');
 // Axios is a promise based HTTP client for the browser and node.js.  https://www.npmjs.com/package/axios
 var axios = require('axios');
 // Cheerio is implementation of core jQuery for the server. https://cheerio.js.org/
 var cheerio = require('cheerio');
-// Handlebars view engine for Express.  https://www.npmjs.com/package/express-handlebars
-var exphbs = require('express-handlebars');
 // Mongoose is a MongoDB object modeling tool.  https://mongoosejs.com/
 var mongoose = require('mongoose');
 
@@ -58,7 +58,10 @@ app.get('/', function(req, res) {
         });
 
         // Send confirmation to client.
-        res.send('Scrape complete');
+        // res.send('Scrape complete');
+        
+        // Render html.
+        res.render('index'); 
     });
 });
 
